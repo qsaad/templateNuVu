@@ -1,89 +1,154 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
+<div>
+  
+  <top-bar-component path="login" name="Login"></top-bar-component>
+  
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- TAGLINE + LOGIN/REGISTER/RESET DIALOG -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <v-row justify="center" align="center" class="section-one">
+    <v-col cols="12" sm="8" md="6" justify="center" align="center" >
+      <img src="/images/logo.png" width="200">
+        <p class="display-3 font-weight-bold">PROJEXT360</p>
+        <p class="body-2 red--text text--darken-3">A free webapp to stay in sync</p>
+           <v-btn color="indigo" to="signup">Sign up</v-btn>
+      </v-col>
   </v-row>
+
+
+  <!-- <v-snackbar vertical v-model="snackbar" :timeout="timeout">
+    <v-row dense justify="center" align="center">
+      <v-col col="12">
+        <p class="green--text text-center body-1">Install this webapp on your iphone :</p>
+        <p class="green--text text-center body-1">Tap upload button below and Add to Homescreen</p> 
+      </v-col>
+    </v-row>
+    
+    <v-btn color="blue" text @click="snackbar = false">
+      Close
+    </v-btn>
+  </v-snackbar> -->
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- FOOTER -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <v-footer color="teal darken-4">
+      <v-row dense justify="center" align="center">
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Projext360</strong>
+      </v-col>
+      </v-row>
+    </v-footer>
+
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+//import {fireAuth} from '~/plugins/firebase.js'
+import TopBarComponent from '@/components/TopBarComponent'
+
+// const isIos = () => {
+//   const userAgent = window.navigator.userAgent.toLowerCase()
+//   return /iphone|ipad|ipod/.test( userAgent );
+// }
+
+// Detects if device is in standalone mode
+// const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+// const appInstall = () => {
+//   if(
+//       (('standalone' in window.navigator) && !window.navigator.standalone) //IOS
+//       ||
+//       (!window.matchMedia('display-mode : standalone').matches) //ANDROID
+//     )
+//     {
+//       alert('Add to Homescreen')
+//     }
+// }
+
+// const check = () => {
+//   if (!('serviceWorker' in navigator)) {
+//     throw new Error('No Service Worker support!')
+//   }
+//   if (!('PushManager' in window)) {
+//     throw new Error('No Push API Support!')
+//   }
+// }
+
+// const registerServiceWorker = async () => {
+//   const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js')
+//   return registration
+// }
+
+// const main = async () => {
+//   try{
+//     check();
+//     let registration = await registerServiceWorker()
+//     if(registration){
+//       console.log('SW is registered')
+//      }
+//   }
+//   catch(error){
+//     console.log('Service Worker ', error.message)
+//   }
+// }
+
+// if (process.browser) {
+//   main()
+// }
+
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  }
+  middleware : [],
+  components: {TopBarComponent},
+  layout : 'landing',
+  data: () => ({
+      snackbar : false,
+      timeout : 6000
+  }),//DATA
+  async asyncData({store}){
+        return{
+         
+        }//RETURN
+    },//ASYNC DATA
+    async fetch({store}){
+      
+    },
+    created(){
+      //appInstall()
+    },//CREATED
+    mounted(){
+      // if (isIos() && !isInStandaloneMode()) {
+      //     this.snackbar = true
+      // }
+      //this.isLoggedIn
+    },//MOUNTED
+    watch: {
+     
+    },//WATCH
+    computed:{
+      // async isLoggedIn(){
+      //   await fireAuth.onAuthStateChanged(user => {
+      //     if (user) {
+      //       console.log('Already Logged in')
+      //       console.log(user)
+      //       this.$store.dispatch('setUser', user)
+      //     }
+      //     else{
+      //       this.$router.replace('/').catch(err => console.log(err) )
+      //     }
+      //   })
+      // }//IS LOGGED IN
+    },//COMPUTED
+    methods:{
+     
+    },//METHODS  
 }
 </script>
+
+<style scoped>
+.section-one{
+  height : 100vh;
+}
+</style>
+
